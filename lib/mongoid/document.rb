@@ -5,7 +5,8 @@ module Mongoid #:nodoc:
     included do
       include Mongoid::Components
 
-      cattr_accessor :primary_key, :hereditary
+      cattr_accessor :primary_key, :_identifier, :hereditary
+      self._identifier = BSON::ObjectID
       self.hereditary = false
 
       attr_accessor :association_name, :_parent
@@ -18,6 +19,11 @@ module Mongoid #:nodoc:
       # Return the database associated with this class.
       def db
         collection.db
+      end
+
+      # Set the identifier class for generating ids.
+      def identify_with(klass)
+        self._identifier = klass
       end
 
       # Perform default behavior but mark the hierarchy as being hereditary.

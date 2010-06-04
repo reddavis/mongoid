@@ -246,6 +246,24 @@ describe Mongoid::Document do
 
   end
 
+  describe "._identifier" do
+
+    context "when a custom identifier is not defined" do
+
+      it "returns BSON::ObjectID" do
+        Person._identifier.should == BSON::ObjectID
+      end
+    end
+
+    context "when a custom identifier is defined" do
+
+      it "returns the type provided" do
+        Person.identify_with String
+        Person._identifier.should == String
+      end
+    end
+  end
+
   describe ".initialize" do
 
     context "when passed a block" do
