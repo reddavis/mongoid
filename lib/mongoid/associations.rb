@@ -181,7 +181,7 @@ module Mongoid # :nodoc:
       def referenced_in(name, options = {}, &block)
         opts = optionize(name, options, constraint(name, options, :in), &block)
         associate(Associations::ReferencedIn, opts)
-        field(opts.foreign_key, :type => options[:identify_with] || BSON::ObjectID)
+        field(opts.foreign_key, :type => options[:foreign_key_type] || BSON::ObjectID)
         index(opts.foreign_key) unless embedded?
         set_callback(:save, :before) { |document| document.update_foreign_keys }
       end
