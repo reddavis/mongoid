@@ -258,11 +258,11 @@ describe Mongoid::Document do
     context "when a custom identifier is defined" do
 
       after do
-        Person.identify_with BSON::ObjectID
+        Person.id_as BSON::ObjectID
       end
 
       it "returns the type provided" do
-        Person.identify_with String
+        Person.id_as String
         Person._identifier.should == String
       end
     end

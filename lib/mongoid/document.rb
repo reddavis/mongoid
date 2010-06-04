@@ -22,7 +22,7 @@ module Mongoid #:nodoc:
       end
 
       # Set the identifier class for generating ids.
-      def identify_with(klass)
+      def id_as(klass)
         self._identifier = klass
       end
 

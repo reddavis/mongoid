@@ -9,7 +9,7 @@ class Post
   include Mongoid::Versioning
   include Mongoid::Timestamps
 
-  identify_with String
+  id_as String
   field :title
   referenced_in :person
 
