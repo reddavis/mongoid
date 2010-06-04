@@ -14,15 +14,15 @@ module Mongoid #:nodoc:
 
       protected
       # Return the proper id for the document.
-      def generate_id
+      def generate_id(doc)
         id = BSON::ObjectID.new
-        Mongoid.use_object_ids ? id : id.to_s
+        doc._identifier == BSON::ObjectID ? id : id.to_s
       end
 
       # Set the id for the document.
       def identify(doc)
         doc.id = compose(doc).join(" ").identify if doc.primary_key
-        doc.id = generate_id if doc.id.blank?
+        doc.id = generate_id(doc) if doc.id.blank?
       end
 
       # Set the _type field on the document.

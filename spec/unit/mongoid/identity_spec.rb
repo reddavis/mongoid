@@ -67,14 +67,6 @@ describe Mongoid::Identity do
 
         context "when using object ids" do
 
-          before do
-            Mongoid.use_object_ids = true
-          end
-
-          after do
-            Mongoid.use_object_ids = false
-          end
-
           it "sets the id to a mongo object id" do
             Mongoid::Identity.create(@person)
             @person.id.should == @object_id
@@ -83,9 +75,13 @@ describe Mongoid::Identity do
 
         context "when not using object ids" do
 
+          before do
+            @post = Post.new
+          end
+
           it "sets the id to a mongo object id string" do
-            Mongoid::Identity.create(@person)
-            @person.id.should == "1"
+            Mongoid::Identity.create(@post)
+            @post.id.should == "1"
           end
 
         end

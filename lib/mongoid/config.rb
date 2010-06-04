@@ -11,7 +11,6 @@ module Mongoid #:nodoc
       :parameterize_keys,
       :persist_in_safe_mode,
       :raise_not_found_error,
-      :use_object_ids,
       :skip_version_check
 
     # Defaults the configuration options to true.
@@ -153,7 +152,6 @@ module Mongoid #:nodoc
       @persist_in_safe_mode = true
       @raise_not_found_error = true
       @reconnect_time = 3
-      @use_object_ids = false
       @skip_version_check = false
       @time_zone = nil
     end

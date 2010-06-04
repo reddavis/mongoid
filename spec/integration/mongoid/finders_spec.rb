@@ -62,7 +62,6 @@ describe Mongoid::Finders do
     context "using object ids" do
 
       before do
-        Mongoid.use_object_ids = true
         @documents = []
         @document = Person.create(:title => "Mrs.", :ssn => "another")
         3.times do |n|
@@ -71,7 +70,6 @@ describe Mongoid::Finders do
       end
 
       after do
-        Mongoid.use_object_ids = false
         Person.delete_all
       end
 

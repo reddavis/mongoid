@@ -8,6 +8,8 @@ class Post
   include Mongoid::Document
   include Mongoid::Versioning
   include Mongoid::Timestamps
+
+  identify_with String
   field :title
   referenced_in :person
 

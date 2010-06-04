@@ -60,10 +60,6 @@ describe Mongoid::Config do
         config.raise_not_found_error.should == false
       end
 
-      it "sets use_object_ids" do
-        config.use_object_ids.should == true
-      end
-
       it "returns nil, which is interpreted as the local time_zone" do
         config.use_utc.should be_false
       end
@@ -269,16 +265,6 @@ describe Mongoid::Config do
       it "sets the value" do
         config.allow_dynamic_fields.should == false
       end
-
-    end
-
-  end
-
-  describe "#use_object_ids" do
-
-    it "defaults to false" do
-      config.use_object_ids.should == false
     end
   end
-
 end

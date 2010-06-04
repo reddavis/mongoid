@@ -512,14 +512,6 @@ describe Mongoid::Associations do
 
     context "when using object ids" do
 
-      before do
-        Mongoid.use_object_ids = true
-      end
-
-      after do
-        Mongoid.use_object_ids = false
-      end
-
       it "sets the foreign key as an object id" do
         Game.expects(:field).with("person_id", :type => BSON::ObjectID)
         Game.referenced_in :person
