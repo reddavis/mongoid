@@ -513,7 +513,7 @@ describe Mongoid::Associations do
       context "when index is set" do
 
         it "puts an index on the foreign key" do
-          Game.expects(:index).with("person_id")
+          Game.expects(:index).with("person_id", :background => true)
           Game.referenced_in :person, :index => true
         end
       end
@@ -526,7 +526,6 @@ describe Mongoid::Associations do
         Game.referenced_in :person
       end
     end
-
   end
 
   describe ".references_one" do
@@ -550,9 +549,7 @@ describe Mongoid::Associations do
       it "defines the method on the association" do
         @person.game.extension.should == "Testing"
       end
-
     end
-
   end
 
   describe ".references_many" do
@@ -574,7 +571,6 @@ describe Mongoid::Associations do
       it "defines the method on the association" do
         @person.posts.extension.should == "Testing"
       end
-
     end
 
     context "with a stored_as option provided" do

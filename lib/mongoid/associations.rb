@@ -182,7 +182,7 @@ module Mongoid # :nodoc:
         opts = optionize(name, options, constraint(name, options, :in), &block)
         associate(Associations::ReferencedIn, opts)
         field(opts.foreign_key, :type => options[:foreign_key_type] || BSON::ObjectID)
-        index(opts.foreign_key) if !embedded? && opts.index
+        index(opts.foreign_key, :background => true) if !embedded? && opts.index
         set_callback(:save, :before) { |document| document.update_foreign_keys }
       end
 
@@ -305,8 +305,8 @@ module Mongoid # :nodoc:
       def reference_many(name, options, &block)
         if (options[:stored_as] == :array)
           opts = optionize(name, options, constraint(name, options, :many_as_array), &block)
-          field "#{name.to_s.singularize}_ids", :type => Array, :default => []
-          index "#{name.to_s.singularize}_ids" if opts.index
+          field("#{name.to_s.singularize}_ids", :type => Array, :default => [])
+          index("#{name.to_s.singularize}_ids", :background => true) if opts.index
           associate(Associations::ReferencesManyAsArray, opts)
         else
           opts = optionize(name, options, constraint(name, options, :many), &block)
