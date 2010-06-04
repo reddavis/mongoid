@@ -40,7 +40,9 @@ module Mongoid # :nodoc:
       # Update all the dirty child documents after an update.
       def update_embedded(name)
         association = send(name)
-        association.to_a.each { |doc| doc.save if doc.changed? || doc.new_record? } unless association.blank?
+        association.to_a.each do |doc|
+          doc.save if doc.changed? || doc.new_record?
+        end unless association.blank?
       end
 
       # Update the one-to-one relational association for the name.
