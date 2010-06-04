@@ -64,7 +64,7 @@ class Person
       "Testing"
     end
   end
-  references_many :preferences, :stored_as => :array, :inverse_of => :people
+  references_many :preferences, :stored_as => :array, :inverse_of => :people, :index => true
 
   def score_with_rescoring=(score)
     @rescored = score.to_i + 20

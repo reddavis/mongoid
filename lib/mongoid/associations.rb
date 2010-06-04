@@ -306,6 +306,7 @@ module Mongoid # :nodoc:
         if (options[:stored_as] == :array)
           opts = optionize(name, options, constraint(name, options, :many_as_array), &block)
           field "#{name.to_s.singularize}_ids", :type => Array, :default => []
+          index "#{name.to_s.singularize}_ids" if opts.index
           associate(Associations::ReferencesManyAsArray, opts)
         else
           opts = optionize(name, options, constraint(name, options, :many), &block)
